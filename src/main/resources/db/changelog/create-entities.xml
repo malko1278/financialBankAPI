@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd" >
+
+    <changeSet id="08122022-01" author="franck">
+        <createTable tableName="clients" remarks="A table to contain all clients">
+            <column name="id_client" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(255)"/>
+            <column name="father_name" type="varchar(255)"/>
+            <column name="client_code" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="accounts" remarks="A table to contain all accounts of clients">
+            <column name="id_account" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="id_client_account" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_number" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="amount" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opening_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="validity" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="checkouts_order"
+                     remarks="A table to contain all checkouts order of transaction">
+            <column name="id_check_order" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="order_type" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_account_check" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result_execution" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_creation" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_checkout" type="int"/>
+        </createTable>
+
+        <createTable tableName="transactions" remarks="A table to contain all transactions">
+            <column name="id_transaction" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="date_creation" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_type" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_account_transact" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="check_order_transaction" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_account_transaction" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result_execution" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

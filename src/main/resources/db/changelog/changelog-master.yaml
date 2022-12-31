@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/create-entities.xml
+  - include:
+      file: db/changelog/insert-data-clients.xml
+  - include:
+      file: db/changelog/insert-data-accounts.xml
+  - include:
+      file: db/changelog/insert-data-checkouts_order.xml
+  - include:
+      file: db/changelog/insert-data-transactions.xml
